@@ -7,9 +7,13 @@ extension Diff: Decodable where T: Decodable {
             guard let decodable = property.type as? Decodable.Type else { return }
             guard let key = Key(stringValue: property.name) else { return }
 
-            let single = try container.superDecoder(forKey: key)
-            let value = try decodable.init(from: single)
-            self.values[property.name] = .update(value)
+            do {
+                let single = try container.superDecoder(forKey: key)
+                let value = try decodable.init(from: single)
+                self.values[property.name] = .update(value)
+            }
+            catch DecodingError.keyNotFound { }
+            catch DecodingError.valueNotFound { }
         }
     }
 }
