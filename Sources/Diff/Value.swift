@@ -23,3 +23,6 @@ public enum Value<T> {
         }
     }
 }
+
+extension Value: Equatable where T: Equatable { }
+extension Value: Hashable where T: Hashable { }
