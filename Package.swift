@@ -7,9 +7,11 @@ let package = Package(
     products: [
         .library(name: "Diff", targets: ["Diff"]),
     ],
-    dependencies: [],
+    dependencies: [
+        .package(url: "https://github.com/calebkleveter/KeyPathReflector.git", from: "0.1.0")
+    ],
     targets: [
-        .target(name: "Diff", dependencies: []),
+        .target(name: "Diff", dependencies: ["KeyPathReflector"]),
         .testTarget(name: "DiffTests", dependencies: ["Diff"]),
     ]
 )
