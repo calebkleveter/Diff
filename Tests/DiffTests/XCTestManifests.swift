@@ -6,6 +6,10 @@ extension DiffTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__DiffTests = [
+        ("testApply", testApply),
+        ("testDiffDecoding", testDiffDecoding),
+        ("testDiffEncoding", testDiffEncoding),
+        ("testGetSet", testGetSet),
         ("testUniverseWorks", testUniverseWorks),
     ]
 }
