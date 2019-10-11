@@ -10,6 +10,14 @@ public struct Diff<T> {
         self.values = [:]
     }
 
+    public init(_ values: [DiffSetter<T>]) throws {
+        try self.init(T.self)
+        values.forEach { setter in
+            guard let key = self.reflector.property(for: setter.key)?.name else { return }
+            self.values[key] = setter.value
+        }
+    }
+
     public subscript <V>(dynamicMember keyPath: KeyPath<T, V>) -> Value<V> {
         get {
             guard let key = self.reflector.property(for: keyPath)?.name else { return .unchanged }

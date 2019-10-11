@@ -18,6 +18,16 @@ final class DiffTests: XCTestCase {
         XCTAssertEqual(diff.lastName, .update("Finnley"))
     }
 
+    func testInit() throws {
+        let diff = try Diff<User>([\.firstName ~ "Caleb", \.lastName ~ "Kleveter", \.guest ~ false])
+
+        XCTAssertEqual(diff.firstName, .update("Caleb"))
+        XCTAssertEqual(diff.lastName, .update("Kleveter"))
+        XCTAssertEqual(diff.guest, .update(false))
+        XCTAssertEqual(diff.age, .unchanged)
+        XCTAssertEqual(diff.password, .unchanged)
+    }
+
     @available(OSX 10.13, *)
     func testDiffEncoding() throws {
         var diff = try Diff(User.self)
