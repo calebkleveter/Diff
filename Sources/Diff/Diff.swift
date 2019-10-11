@@ -5,7 +5,7 @@ public struct Diff<T> {
     internal var values: [String: Value<Any>]
     internal let reflector: KeyPathReflector<T>
 
-    public init() throws {
+    public init(_ type: T.Type = T.self) throws {
         self.reflector = try KeyPathReflector()
         self.values = [:]
     }
